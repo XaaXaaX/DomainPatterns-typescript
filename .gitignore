@@ -1,0 +1,8 @@
+node_modules
+.vs
+dist
+build
+.git
+.scannerwork
+coverage
+reports
