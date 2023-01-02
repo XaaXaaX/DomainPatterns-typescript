@@ -1,4 +1,4 @@
-interface ISpecification<in T>
+interface ISpecification<T>
 {
     IsSatisfiedBy(model: T): boolean;
 }

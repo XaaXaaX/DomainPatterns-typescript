@@ -1,5 +1,6 @@
 import { 
     AndSpecification, 
+    NotSpecification, 
     OrSpecification, 
     XAndSpecification 
 } from "./CompositeSepcification";
@@ -8,20 +9,27 @@ import { Specification } from "./Specification";
 
 declare module "./Specification" {
     interface Specification<T> {
-        And(spec: ISpecification<T>): ISpecification<T>;
-        Or(spec: ISpecification<T>): ISpecification<T>;
-        XAnd(spec: ISpecification<T>): ISpecification<T>;
+        And<T>(spec: ISpecification<T>): Specification<T>;
+        Or<T>(spec: ISpecification<T>): Specification<T>;
+        XAnd<T>(spec: ISpecification<T>): Specification<T>;
+        Not<T>(): ISpecification<T>;
     }
 }
 
-Specification.prototype.And = <T>(spec: ISpecification<T>): ISpecification<T> => {
+Specification.prototype.And = function<T>(spec: ISpecification<T>): Specification<T> {
     return new AndSpecification<T>(this, spec);
 }
-Specification.prototype.Or = <T>(spec: ISpecification<T>): ISpecification<T> => {
+
+Specification.prototype.Or = function<T>(spec: ISpecification<T>): Specification<T> {
     return new OrSpecification<T>(this, spec);
 }
-Specification.prototype.XAnd = <T>(spec: ISpecification<T>): ISpecification<T> => {
+
+Specification.prototype.XAnd = function<T>(spec: ISpecification<T>): Specification<T> {
     return new XAndSpecification<T>(this, spec);
+}
+
+Specification.prototype.Not = function<T>(): Specification<T> {
+    return new NotSpecification<T>(this);
 }
 
 export {};

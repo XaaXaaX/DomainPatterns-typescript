@@ -1,11 +1,13 @@
 import { ISpecification } from "./ISpecification";
+import { Specification } from "./Specification";
 
-abstract class PairSpecification<T> implements ISpecification<T>
+abstract class PairSpecification<T> extends Specification<T>
 {
     protected readonly left: ISpecification<T>;
     protected readonly right: ISpecification<T>;
     protected constructor(left: ISpecification<T>, right: ISpecification<T>)
     {
+        super()
         this.left = left;
         this.right = right;
 
@@ -48,11 +50,12 @@ class OrSpecification<T> extends PairSpecification<T>
         return this.left.IsSatisfiedBy(model) || this.right.IsSatisfiedBy(model);
     }
 }
-class NotSpecification<T> implements ISpecification<T>
+class NotSpecification<T> extends Specification<T>
 {
     private readonly specification: ISpecification<T>;
     public constructor(specification: ISpecification<T>)
     {
+        super()
         this.specification = specification;
 
     }

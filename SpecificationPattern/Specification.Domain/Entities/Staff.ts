@@ -1,4 +1,5 @@
 ﻿import { StaffValidator } from "../ValidationRules/StaffValidator";
+import { Name } from "./Name";
 
 class Staff
 {

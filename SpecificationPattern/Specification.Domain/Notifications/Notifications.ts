@@ -6,7 +6,7 @@ class NotificationPublisher
         if (this.RaiseNotificationEvent == null)
             return;
 
-        this.RaiseNotificationEvent({}, e);
+        this.RaiseNotificationEvent(this, e);
     }
 }
 
@@ -26,10 +26,9 @@ class ValidationNotification
 
 abstract class Notifier
 {
-    public readonly Notifications = new ValidationNotification();
-
-    protected constructor()
-    {
+    protected constructor(
+        public readonly Notifications = new ValidationNotification()
+    ) {
         NotificationPublisher.RaiseNotificationEvent = this.HandleNotificationEvent;
     }
 

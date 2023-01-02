@@ -3,12 +3,9 @@ import { ISpecification } from "../Specifications/ISpecification";
 
 class Validator<T> extends Notifier
 {
-    public readonly validationRule: ISpecification<T> ;
-    
-    public constructor(validationRule: ISpecification<T> )
+    public constructor(public readonly validationRule: ISpecification<T> )
     {
-        super()
-        this.validationRule = validationRule;
+        super();
     }
     public Validate(model: T): ValidationNotification 
     {

@@ -1,6 +1,6 @@
 import { ISpecification } from "./ISpecification";
 
-abstract class Specification<in T> implements ISpecification<T>
+abstract class Specification<T> implements ISpecification<T>
 {
     abstract IsSatisfiedBy(model: T): boolean;
 }
